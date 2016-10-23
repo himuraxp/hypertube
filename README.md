@@ -6,5 +6,5 @@ Project of web site streaming movies with torrent for the last project of web br
 Authors :
 Dylan BONNEAU
 Michael BOUHIER
-Yohan LARBI
+Yohann LARBI
 Geoffrey MARGUERIE
