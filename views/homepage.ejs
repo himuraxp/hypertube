@@ -1,0 +1,107 @@
+<start>
+  <% if(!req.session.etat || !req.session.user.language || req.session.user.language == "English" || req.session.etat == "déconnecté"){ %>
+    <% req.setLocale('en') %>
+  <% } else if(!req.session.user.language || req.session.user.language == "Français"){ %>
+    <% req.setLocale('fr') %>
+  <% } %>
+  <div class="central" style="margin:0;">
+      <% if(typeof created != 'undefined' && created == "created"){ %>
+        <div class="created messageTop">
+          <%= __('Your account has been created !!') %>
+        </div>
+      <% }else if(req.session.actived && req.session.actived == "actived"){ %>
+        <div class="created messageTop">
+          <%= __('Your account is enabled and you can log on with your password !!') %>
+        </div>
+      <% req.session.actived = "";%>
+           <% }%>
+        <% if(req.session.mail && req.session.mail == "envoyé"){ %>
+       <div class="created messageTop">
+           <%= __('A confirmation email was sent to you !!') %>
+       </div>
+     <% req.session.mail = ""; %>
+     <% }%>
+      <div class="connection">
+        <% if(!req.session.etat || req.session.etat == "déconnecté"){ %>
+        <div class="sign">
+          <div class="block-register">
+            <h2> <%= __('Sign Up') %></h2>
+            <i style="display:block;margin-bottom:10px;"> <%= __('Hypertube the platform of streaming') %></i></br>
+            <% if(req.session.match && req.session.match[0] == "email"){ %>
+              <div class="errorSignup messageTop">
+                <%= __('An account with this email: ') %><%= req.session.match[1]%><%= __(' already exists, please choose another one !!') %>
+              </div>
+              <%  req.session.match = "";%>
+            <% }else if(req.session.match && req.session.match[0] == "pseudo"){ %>
+              <div class="errorSignup messageTop">
+                <%= __('This login : ') %><%= req.session.match[2]%><%= __(' is already used !!') %>
+              </div>
+              <%  req.session.match = "";%>
+            <% } else if(req.session.errSignup && req.session.errSignup == "signupIncomplete"){ %>
+              <div class="errorSignup messageTop">
+                  <%= __('Please complete all fields !!') %>
+              </div>
+            <% req.session.errSignup = ""; %>
+            <%  } else if(req.session.errSignup && req.session.errSignup == "badFormatPwd"){ %>
+              <div class="errorSignup messageTop">
+                  <%= __('The password format is not good !!') %>
+              </div>
+            <% req.session.errSignup = ""; %>
+            <%  } else if(req.session.errSignup && req.session.errSignup == "badFormatMail"){ %>
+              <div class="errorSignup messageTop">
+                  <%= __('The email format is not good !!') %>
+              </div>
+            <% req.session.errSignup = ""; %>
+            <% }else if(req.session.errSignup && req.session.errSignup == "too_long"){ %>
+              <div class="errorSignup messageTop">
+                <%= __('your first name or your last name or your pseudo is/are too long') %>
+              </div>
+            <% req.session.errSignup = ""; %>
+            <% }else if(req.session.errSignup && req.session.errSignup == "format_file"){%>
+          		<div class="errorSignup messageTop">
+          				<%= __('The image format is not good !!') %>
+          		</div>
+          		<% req.session.errSignup = ""; %>
+          		<% }%>
+            <form class="" action="register" enctype="multipart/form-data" method="post">
+                <div class="form-group">
+                  <label class="register-min-title"><%= __('Email address') %></label>
+                  <input type="email" class="form-control" name="Email" aria-describedby="emailHelp" placeholder="<%= __('Enter email') %>">
+                  <small id="emailHelp" class="form-text text-muted"><%= __('We\'ll never share your email with anyone else.') %></small>
+                </div>
+                <div class="form-group">
+                  <label class="register-min-title"><%= __('First Name') %></label>
+                  <input type="text" class="form-control" name="firstName" placeholder="<%= __('Enter First Name') %>">
+                </div>
+                <div class="form-group">
+                  <label class="register-min-title"><%= __('Last Name') %></label>
+                  <input type="text" class="form-control" name="lastName" placeholder="<%= __('Enter Last Name') %>">
+                </div>
+                <div class="form-group">
+                  <label class="register-min-title"><%= __('Login') %></label>
+                  <input type="text" class="form-control" name="pseudo" placeholder="<%= __('Enter Login') %>">
+                </div>
+                <div class="form-group">
+                  <label class="register-min-title"><%= __('password (8 characters length, at least 1 letter Tiny, at least 1 letter and 1 number Shift)') %></label>
+                  <input type="password" class="form-control" name="password" placeholder="<%= __('Enter Password') %>">
+                </div>
+                <div class="form-group">
+                  <label class="register-min-title"><%= __('language select') %></label>
+                  <select class="form-control" name="languageSelect">
+                    <option value="English">English</option>
+                    <option value="Français">Français</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label class="register-min-title"><%= __('Profile photo') %></label>
+                  <input type="file" name="userPhoto"/>
+                </div>
+                <button type="submit" class="btn-hp hvr-bounce-to-bottom"><%= __('Register') %></button>
+            </form>
+          </div>
+        </div>
+        <% } %>
+      </div>
+  </div>
+  <input type="hidden" id="Pop" value="<%= req.session.user && req.session.user.id ? 'ok' : 'no'%>">
+<end>

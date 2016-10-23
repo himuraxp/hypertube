@@ -1,0 +1,140 @@
+<% if(!req.session.etat || !req.session.user.language || req.session.user.language == "English" || req.session.etat == "déconnecté"){ %>
+	<% req.setLocale('en') %>
+<% } else if(!req.session.user.language || req.session.user.language == "Français"){ %>
+	<% req.setLocale('fr') %>
+<% } %>
+<% if(req.session.etat === "connecté" && req.session.user.active === 1 && (req.session.user.admin === 1 || req.session.user.admin === 2)) { %>
+<div class="button-update">
+	<a href="" id="maj_db"><i class="fa fa-database" aria-hidden="true"></i></a>
+</div>
+<% var count = 0 %>
+<div class="central"  style="display:block;width:100%;margin:90px 0 0 0;">
+	<div class="sign" style="padding:60px 20px 0 20px;">
+<div id="block-gestion">
+	<% if(req.session.match && req.session.match[0] == "email"){ %>
+	<div class="errorSignup messageTop">
+	<%= __('An account with this email: ') %><%= req.session.match[1]%><%= __('already exists, please choose another one !!') %>
+	</div>
+	<%  req.session.match = ""; %>
+	<% }else if(req.session.match && req.session.match[0] == "pseudo"){ %>
+	<div class="errorSignup messageTop">
+	<%= __('This login : ') %> <%= req.session.match[2]%><%= __(' is already used !!') %>
+	</div>
+	<%  req.session.match = ""; %>
+	<% } else if(req.session.errSignup && req.session.errSignup == "signupIncomplete"){ %>
+	<div class="errorSignup messageTop">
+	<%= __('Please complete all fields !!') %>
+	</div>
+	<% req.session.errSignup = ""; %>
+	<%  } else if(req.session.errSignup && req.session.errSignup == "updated"){ %>
+	<div class="created messageTop">
+	<%= __('The changes were successful !!') %>
+	</div>
+	<% req.session.errSignup = ""; %>
+	<%  } else if(req.session.errSignup && req.session.errSignup == "badFormatMail"){ %>
+	<div class="errorSignup messageTop">
+	<%= __('The email format is not good !!') %>
+	</div>
+	<% req.session.errSignup = ""; %>
+	<% } %>
+	<% if(update === 1) { %>
+	<div class="created messageTop">
+		<%= __('Update success !') %>
+	</div>
+	<% } else if(update === 2) { %>
+	<div class="errorSignup messageTop">
+		<%= __('Update failed ! ') %><%= msg %>
+	</div>
+	<% } %>
+<div class="block-table">
+	<table>
+		<tr>
+			<td class="title-table"><%= __('Save') %></td>
+			<td class="title-table"><%= __('Picture') %></td>
+			<td class="title-table"><%= __('First Name') %></td>
+			<td class="title-table"><%= __('Last Name') %></td>
+			<td class="title-table"><%= __('Email') %></td>
+			<td class="title-table"><%= __('Login') %></td>
+			<td class="title-table"><%= __('Active') %></td>
+			<td class="title-table"><%= __('codeActive') %></td>
+			<% if(me.admin === 2) { %>
+				<td class="title-table"><%= __('Admin') %></td>
+			<% } %>
+			<td class="title-table"><%= __('Language') %></td>
+		</tr>
+		<% listUsers.forEach(function(user, j){ %>
+			<% count = j %>
+			<tr>
+				<form action="/Gestion/update" enctype="multipart/form-data" method="post">
+					<td><button type="submit" name="action" value="update" class="btn-hp hvr-bounce-to-bottom" style="padding:8px;outline:none;"><%= __('Modify') %></button></td>
+					<td style="width:65px;">
+						<div class="block-img hover-pic">
+							<button type="submit" name="action" value="delete_pic" style="background:none;border:none;padding:0px;outline:none;"><img src="<%= !user.photo ? "/images/pic_default.jpg" : user.photo %>" alt="Picture <%= user.pseudo %>"/></button>
+						</div>
+					</td>
+					<td><input id="firstName" name="firstName" type="text" value="<%= user.firstName %>"></td>
+					<td><input id="lastName" name="lastName" type="text" value="<%= user.lastName %>"></td>
+					<td><input id="email" name="email" type="text" value="<%= user.email %>"></td>
+					<td><input id="pseudo" name="pseudo" type="text" value="<%= user.pseudo %>"></td>
+					<td>
+						<div style="text-align:center;font-size:1.5em;">
+							<% if(user.active) { %>
+								<button type="submit" name="action" value="desactive" class="btn-hp hvr-bounce-to-bottom" style="padding:0px;outline:none;"><i class="fa fa-check" style="color:#00e400;text-shadow:1px 1px 1px #333;" aria-hidden="true"></i></button>
+							<% } else { %>
+								<button type="submit" name="action" value="active" class="btn-hp hvr-bounce-to-bottom" style="padding:0px;outline:none;"><i class="fa fa-ban" style="color:red;text-shadow:1px 1px 1px #333;" aria-hidden="true"></i></button>
+
+							<% } %>
+						</div>
+					</td>
+					<td><input id="codeActive" name="codeActive" type="text" value="<%= user.codeActive %>"></td>
+					<% if(me.admin === 2) { %>
+					<td>
+						<select class="btn-hp" name="permit" style="outline:none;font-size:1em;height:100%;">
+							<% if(user.admin === 0) { %>
+								<option value="member" selected><%= __('Member') %></option>
+								<option value="admin"><%= __('Admin') %></option>
+							<% } else if(user.admin === 1) { %>
+								<option value="member"><%= __('Member') %></option>
+								<option value="admin" selected><%= __('Admin') %></option>
+							<% } else { %>
+								<option value="member"><%= __('Member') %></option>
+								<option value="admin"><%= __('Admin') %></option>
+							<% } %>
+						</select>
+					</td>
+					<% } %>
+					<td>
+						<select class="btn-hp" name="language" style="outline:none;font-size:1em;height:100%;">
+							<% if(user.language === "Français") { %>
+								<option value="English">English</option>
+								<option value="Français" selected>Français</option>
+							<% } else if(user.language === "English") { %>
+								<option value="English" selected>English</option>
+								<option value="Français">Français</option>
+							<% } else { %>
+								<option value="English">English</option>
+								<option value="Français">Français</option>
+							<% } %>
+						</select>
+					</td>
+					<td hidden="hidden"><input id="id_user" name="id_user" type="text" value="<%= user.id %>" ></td>
+				</form>
+			</tr>
+		<% }) %>
+	</table>
+</div>
+</div>
+</div>
+<script src="/js/pagination.js"></script>
+<% } else { %>
+	<a href="/login"><button class="btn-hp hvr-bounce-to-bottom"><%= __('Sign In') %></button></a>
+	<h1 class="title-header"><%= __('To access this page you must be logged on as an administrator!') %></h1>
+	<script type="text/javascript">
+	$(document).ready( function() {
+		function clearNav() {
+			$(".navi").remove();
+		}
+		clearNav();
+	})
+	</script>
+<% } %>

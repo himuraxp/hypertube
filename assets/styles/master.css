@@ -1,0 +1,51 @@
+h1, h2, h3, h4, h5, p, a, i, b, input{
+	font-family: 'Baloo Bhai', cursive;
+}
+a {
+	font-family: 'Baloo Bhai', cursive;
+	color: whitesmoke!important;
+	text-decoration: none;
+}
+body{
+	background-color: #e6efc2!important;
+	background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAMAAAADCAYAAABWKLW/AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAABNJREFUeNpiYECA/3CCAV0UIMAANfEC/mOKn1cAAAAASUVORK5CYII=),url('../images/videoMarketingHeader.jpg') fixed;
+	background-size: auto, auto, cover;
+	background-repeat: repeat, no-repeat;
+}
+table, th, td {
+	border: solid rgba(57,174,168,0.8);
+	border-width: 4px;
+	text-align: left;
+}
+th, td {
+	background-color: rgba(57,174,168,0.8);
+	padding: 15px;
+}
+table {
+	border-collapse: collapse;
+	width: 100%;
+}
+td input {
+	border: none;
+	width: 100%;
+	background-color: rgba(230,239,194,0.8);
+	padding: 15px;
+	transition: 0.5s;
+}
+td input:focus {
+	outline: none;
+	background-color: rgba(85,124,129,0.8);
+	color: whitesmoke;
+	transition: 0.5s;
+}
+button, input, select, textarea {
+	line-height: initial;
+	outline: none;
+}
+input[type="submit"] {
+    font-family: FontAwesome;
+}
+select {
+	background: #fff;
+	border-radius: 0;
+}

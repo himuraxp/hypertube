@@ -1,0 +1,131 @@
+
+.event {
+	width: 100%;
+	right: 0;
+	bottom: 155px;
+	padding-right: 0;
+	margin: 0;
+}
+
+
+.content {
+	-webkit-transform: rotateY(10deg);
+	-moz-transform: rotateY(10deg);
+	-o-transform: rotateY(10deg);
+	-ms-transform: rotateY(10deg);
+	transform: rotateY(10deg);
+
+	-webkit-transform-origin: 0 0;
+	-moz-transform-origin: 0 0;
+	-o-transform-origin: 0 0;
+	-ms-transform-origin: 0 0;
+	transform-origin: 0 0;
+
+	-webkit-transform-style: preserve-3d;
+	-moz-transform-style: preserve-3d;
+	-ms-transform-style: preserve-3d;
+	-o-transform-style: preserve-3d;
+	transform-style: preserve-3d;
+}
+.com-user {
+	position: fixed;
+	display: flex;
+	width: 40%;
+	right: 0;
+	bottom: 161px;
+	padding-right: 0;
+	margin: 0;
+	height: 205px;
+	overflow: auto;
+	flex-direction: column-reverse;
+}
+.com {
+	margin-top: -29px;
+	width: 95%;
+	color: #333!important;
+	font-family: sans-serif;
+	text-align: left!important;
+	margin-left: 30px;
+	max-height: none;
+}
+.com-post {
+	position: fixed;
+	width: 40%!important;
+}
+.content-inner {
+	bottom: 0;
+	right: 0;
+	width: 100%;
+	padding: 10px;
+	color: #333;
+	border: none;
+	border-left: 5px solid rgb(156, 13, 16);
+	background: whitesmoke;
+}
+
+.content-inner h5 {
+	color: #41838e;
+}
+
+.content-inner p {
+	font-size: 16px;
+	color: transparent;
+	color: rgba(0,0,0,0);
+	text-align: center;
+}
+
+.content-inner:before {
+	content: '\25c2';
+	font-weight: normal;
+	font-size: 54px;
+	line-height: 54px;
+	position: absolute;
+	width: 30px;
+	height: 30px;
+	color: rgb(156, 13, 16);
+	left: -22px;
+	top: 19px;
+	z-index: -1;
+}
+
+
+@media screen and (max-width: 3500px) {
+
+
+	.content-inner p {
+		font-size: 14px;
+		text-align: center;
+	}
+
+
+}
+
+@media screen and (max-width: 1150px) {
+
+	.content-inner {
+		background: rgba(255,255,255,0.9);
+	}
+	.block-search {
+		top: 385px;
+	}
+	.button-inline {
+		margin-top: 0;
+	}
+	.com-user {
+		width: 100%;
+	}
+	.block-search img {
+		height: 260px;
+	}
+	.com-post {
+		width: 100%!important;
+		background: rgba(255,255,255,0.9)!important;
+	}
+}
+
+@media screen and (max-width: 700px) {
+
+	.block-search img {
+		height: 200px;
+	}
+}

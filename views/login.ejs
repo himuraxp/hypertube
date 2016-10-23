@@ -1,0 +1,64 @@
+<start>
+<% if(typeof(error) !== 'undefined' && error == "badlog"){ %>
+    <div class="errorLogin messageTop">
+        <%= __('You are mistaken in your login name or password !!') %>
+    </div>
+<% }else if(typeof(error) !== 'undefined' && error == "notActive"){ %>
+    <div class="errorLogin messageTop">
+        <%= __('You have not activated your account via the email sent !!') %>
+    </div>
+<% }else if(typeof badmail  != "undefined" && badmail == "pseudo"){ %>
+  <div class="errorLogin messageTop">
+    <%= __('No account with this login !!') %>
+  </div>
+<% } %>
+<div class="central"  style="display:block;width:100%;margin:0;">
+	<div class="sign">
+	<div class="block-register">
+		<h2> <%= __('Sign In') %></h2>
+		<i> <%= __('Hypertube the platform of streaming') %></i></br>
+		<form class="login" action="/login" method="post">
+		    <div>
+		        <label class="register-min-title"><%= __('Login:') %></label>
+		        <input class="form-control" type="text" name="pseudo"/>
+		    </div>
+		    <div>
+		        <label class="register-min-title"><%= __('Password:') %></label>
+		        <input class="form-control" type="password" name="password"/>
+		    </div>
+		    <div>
+		        <button class="btn-hp hvr-bounce-to-bottom" type="submit"><%= __('Log In') %></button>
+		    </div>
+		</form>
+		<br>
+		<div>
+		  <a class="btn btn-block btn-social btn-facebook" href="/user/facebook">
+		     <span class="fa fa-facebook"></span> <%= __('Sign in with Facebook') %>
+		  </a>
+		  <a class="btn btn-block btn-social btn-twitter" href="/user/twitter">
+		     <span class="fa fa-twitter"></span> <%= __('Sign in with Twitter') %>
+		  </a>
+		  <a class="btn btn-block btn-social btn-google" href="/auth/authenticate">
+		     <span class="fa fa-google"></span> <%= __('Sign in with Google +') %>
+		  </a>
+		  <a class="btn btn-block btn-social btn-42" href="/user/auth_42">
+		     <span class=""></span> <%= __('Sign in with 42') %>
+		  </a>
+		</div>
+		<% if(typeof forget  != "undefined" && forget == "forget"){ %>
+		<div class="errorLogin">
+		  <%= __('No account with this email !!') %>
+		</div>
+		<% } %>
+		<div class="forget">
+		    <h4 class="title-header" style="color:#333;"><i><%= __('Forgot your password ?') %></i></h4>
+		    <form class="" action="/forget" method="post">
+		        <label class="register-min-title"><%= __('Enter your email:') %></label>
+		        <input class="form-control" type="text" name="email"/>
+		        <button class="btn-hp hvr-bounce-to-bottom" type="submit"><%= __('Forget Password') %></button>
+		    </form>
+		</div>
+	</div>
+	</div>
+</div>
+<end>

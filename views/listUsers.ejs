@@ -1,0 +1,39 @@
+<start>
+<% if(req.session.etat === "connecté" && req.session.user.active === 1) { %>
+<div class="central" style="margin:88px 0 0 0;">
+	<% listUsers.forEach(function(user){ %>
+		<div class="register" style="text-align:center;max-width:100%;width:100%;background-color:whitesmoke;margin-top: 2px;border-radius:0;box-shadow:none;">
+			<bolder class="register-min-title" style="margin-right:20px;"><%= user.pseudo %></bolder>
+			<p class="register-min-title"style="margin-right:20px;">
+				<%= user.firstName%> <%= user.lastName%>
+			</p>
+			<% var lastMovie = 0; %>
+			<% viewMovies.forEach(function(view){ %>
+				<% if (user.id === view.id_user){ %>
+					<% if (view.title) { %>
+						<% lastMovie = view.title; %>
+					<% } %>
+				<% } %>
+			<% }); %>
+			<bolder class="register-min-title"style="margin-right:20px;">
+				<% if (lastMovie) { %>
+					Last view is <%= lastMovie %>
+				<% } %>
+			</bolder>
+			<img src="<%= !user.photo ? "/images/pic_default.jpg" : user.photo%>" alt="Mountain View" style="width:50px;height:50px;border-radius:50%;"/>
+		</div>
+	<% }); %>
+</div>
+<% } else { %>
+	<a href="/login"><button class="btn-hp hvr-bounce-to-bottom"><%= __('Sign In') %></button></a>
+	<h1 class="title-header"><%= __('To access this page you must be logged in with an active account') %></h1>
+	<script type="text/javascript">
+	$(document).ready( function() {
+		function clearNav() {
+			$(".navi").remove();
+		}
+		clearNav();
+	})
+	</script>
+<% } %>
+<end>

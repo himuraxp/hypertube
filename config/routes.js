@@ -1,0 +1,181 @@
+/**
+ * Route Mappings
+ * (sails.config.routes)
+ *
+ * Your routes map URLs to views and controllers.
+ *
+ * If Sails receives a URL that doesn't match any of the routes below,
+ * it will check for matching files (images, scripts, stylesheets, etc.)
+ * in your assets directory.  e.g. `http://localhost:1337/images/foo.jpg`
+ * might match an image file: `/assets/images/foo.jpg`
+ *
+ * Finally, if those don't match either, the default 404 handler is triggered.
+ * See `api/responses/notFound.js` to adjust your app's 404 logic.
+ *
+ * Note: Sails doesn't ACTUALLY serve stuff from `assets`-- the default Gruntfile in Sails copies
+ * flat files from `assets` to `.tmp/public`.  This allows you to do things like compile LESS or
+ * CoffeeScript for the front-end.
+ *
+ * For more information on configuring custom routes, check out:
+ * http://sailsjs.org/#!/documentation/concepts/Routes/RouteTargetSyntax.html
+ */
+
+module.exports.routes = {
+
+  /***************************************************************************
+  *                                                                          *
+  * Make the view located at `views/homepage.ejs` (or `views/homepage.jade`, *
+  * etc. depending on your default view engine) your home page.              *
+  *                                                                          *
+  * (Alternatively, remove this and add an `index.html` file in your         *
+  * `assets` directory)                                                      *
+  *                                                                          *
+  ***************************************************************************/
+
+  '/': {
+    view: 'homepage'
+  },
+
+  '/Users/me': {
+    view: 'myAccount'
+  },
+
+  '/Users' :{
+    controller : 'UserController',
+    action : 'getUsers',
+  },
+
+  '/Users/modify':{
+    controller: 'UserController',
+    action: 'modify',
+  },
+
+  '/Gestion':{
+      controller : 'AdminController',
+      action : 'listUsers',
+  },
+
+  'GET /Gestion?page=:page':{
+  	controller : 'AdminController',
+  	action : 'listUsers',
+  },
+
+  'GET /Gestion?page=:page?OK=update':{
+  	controller : 'AdminController',
+  	action : 'listUsers',
+  },
+
+  'POST /Gestion/update':{
+      controller : 'AdminController',
+      action : 'adminUpdateUser',
+  },
+
+  '/Users/activedAccount/:email&:codeActive' :{
+    controller : 'UserController',
+    action : 'activedAccount',
+  },
+
+  'POST /register' :{
+    controller : 'UserController',
+    action : 'createUser',
+  },
+
+  'GET /login': {
+     controller: 'AuthController',
+     action: 'login',
+   },
+
+  'POST /login': {
+     controller: 'AuthController',
+     action: 'process',
+   },
+
+  'GET /logout': {
+     controller: 'AuthController',
+     action: 'logout',
+ },
+
+  'POST /forget': {
+    controller: 'UserController',
+    action: 'forget',
+  },
+
+  '/movie/searchMovie': {
+    controller: 'MovieController',
+    action : 'searchMovie',
+  },
+
+  '/movie/download': {
+    controller: 'MovieController',
+    action : 'download',
+  },
+
+  '/movie/populate': {
+    controller: 'MovieController',
+    action : 'populate',
+  },
+
+  '/movie/dbMovie': {
+    controller: 'MovieController',
+    action : 'dbMovie',
+  },
+
+  '/movie/get':{
+    controller : 'CommentController',
+    action : 'getComment',
+  },
+
+  '/movie/del':{
+    controller : 'CommentController',
+    action : 'delComment',
+  },
+
+  '/movie/comment':{
+    controller : 'CommentController',
+    action : 'comment',
+  },
+  'GET /ApiAuth/:pseudo': {
+		controller: 'AuthController',
+		action: 'restAuth',
+	},
+
+	'GET /ApiAuth': {
+		controller: 'AuthController',
+		action: 'restAuth',
+	},
+
+	'POST /ApiAuth': {
+		controller: 'AuthController',
+		action: 'postAuth',
+	},
+
+	'/me': {
+		controller : 'RestController',
+		action : 'me',
+	},
+
+	'GET /user': {
+		controller : 'RestController',
+		action : 'findByToken',
+	},
+
+	'POST /user': {
+		controller : 'UserController',
+		action : 'create',
+	},
+
+	'GET /findBy': {
+		controller : 'RestController',
+		action : 'findBy',
+	},
+
+	'/findAll': {
+		controller : 'RestController',
+		action : 'findAll',
+	},
+
+	'/members' :{
+		controller : 'UserController',
+		action : 'getUsers',
+	}
+};

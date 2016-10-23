@@ -1,0 +1,214 @@
+:root {
+	--nav-color: #081c24;
+}
+
+.hvr-bounce-to-bottom:before {
+	background: rgba(74,67,66,0.8)!important;
+}
+.hvr-bounce-to-bottom:hover {
+	color: rgba(230,239,194,1)!important;
+}
+.central{
+	margin: 0 20% 0 20%;
+	display: flex;
+	flex-wrap: wrap;
+}
+.central-gestion {
+	margin: 0;
+	display: flex;
+}
+.navbar-block{
+	background-color: var(--nav-color);
+	/*box-shadow: 0 3px 0 rgba(164,212,170,1);*/
+}
+.nav-logo {
+	transition: 0.5s;
+}
+.nav-logo:hover, .nav-logo:focus {
+	background: whitesmoke!important;
+	color: #5b5150!important;
+	transition: 0.5s;
+}
+.nav>li>a {
+
+	transition: 0.5s;
+}
+.nav>li>a:focus, .nav>li>a:hover {
+	color: #5b5150!important;
+	transition: 0.5s;
+}
+.list-inline {
+	margin-top: 200px;
+}
+.list-inline-pop {
+	margin-top: 80px;
+}
+.pic-user-list {
+	margin-left: -20px;
+	margin-bottom: -30px;
+	width: 240px;
+	height: 240px;
+	border-radius: 0 0 20% 4px;
+}
+.user-list {
+	max-width: 240px!important;
+	border-radius: 4px 4px 20% 4px!important;
+}
+.title-header{
+	font-family: 'Baloo Bhai', cursive;
+	padding-top: 50px;
+	color: whitesmoke;
+	text-align: center;
+}
+
+.title{
+	font-family: 'Baloo Bhai', cursive;
+	color: whitesmoke;
+	text-align: center;
+	overflow: hidden;
+}
+
+.connection{
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+}
+
+.sign{
+	background-color: #f4f4f4;
+	width: 100%;
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
+	transition: all 0.3s ease-out;
+}
+.btn-42 {
+	background-color: #333;
+	background-image: url(https://projects.intra.42.fr/assets/42_logo-7dfc9110a5319a308863b96bda33cea995046d1731cebb735e41b16255106c12.svg)!important;
+	background-size: 20px;
+	background-position: 5px;
+	background-repeat: no-repeat;
+}
+.btn-42:hover {
+	background-color: #555;
+}
+
+.connect{
+	margin: auto;
+}
+
+.disconnect{
+	margin: auto;
+}
+.btn-hp {
+	margin: auto;
+	margin-top: 5px;
+	width: 100%;
+	color: var(--navbar-block);
+	text-shadow: 1px 1px 0 rgb(91,81,80);
+	background-color: whitesmoke;
+	font-size: 1.5em;
+	border:none;
+	transition: all 0.3s ease-out;
+}
+.btn-hp2 {
+	margin: auto;
+	width: 100%;
+	color: var(--navbar-block);
+	background-color: whitesmoke;
+	font-size: 1.5em;
+	border: none;
+	border-radius: 4px;
+	transition: all 0.3s ease-out;
+}
+.btn-hp:hover {
+	color: whitesmoke!important;
+	transition: all 0.3s ease-out;
+}
+.btn-hp2:hover {
+
+	border-radius: 4px;
+	transition: all 0.3s ease-out;
+}
+.register{
+	margin: auto;
+	margin-top: 15px;
+	max-width: 280px;
+	padding: 20px;
+	border-radius: 4px;
+	background-color: rgba(91,81,80,0.8);
+	box-shadow: 0 0 4px #e6efc2;
+}
+.register-min-title {
+	display: inline-block;
+	color: rgba(41, 67, 77, 0.99)!important;
+}
+
+.login{
+	margin-top: 5%;
+}
+
+.login2{
+	width: 250px;
+}
+
+.forget{
+	margin-top: 5%;
+}
+.messageTop {
+	top: 48px;
+	left: 0;
+	height: 40px;
+	padding-top: 10px!important;
+	padding-left: 20px!important;
+	padding-right: 20px!important;
+	position: fixed;
+	z-index: 1500;
+	margin-top: 0!important;
+	margin-left: -100%;
+	animation-name: message;
+	animation-duration: 6s;
+}
+.errorLogin{
+	background-color: rgba(231,158,158,0.9);
+	color: #0b3500;
+	padding: 5px;
+	text-align: center;
+	font-style: italic;
+	text-shadow: 0 0 2px #fff;
+	box-shadow: 2px 0 15px rgba(0,0,0,0.4);
+
+}
+
+.created{
+	background-color: rgba(158,231,158,0.9);
+	color: #0b3500;
+	padding: 5px;
+	text-align: center;
+	font-style: italic;
+	text-shadow: 0 0 2px #fff;
+	box-shadow: 2px 0 15px rgba(0,0,0,0.4);
+}
+
+.errorSignup{
+	background-color: rgba(231,158,158,0.9);
+	color: #0b3500;
+	padding: 5px;
+	text-align: center;
+	font-style: italic;
+	text-shadow: 0 0 2px #fff;
+	box-shadow: 2px 0 15px rgba(0,0,0,0.4);
+}
+.hover-pic {
+	transition: 0.5s;
+}
+.hover-pic:hover {
+	-ms-transform: rotate(25deg); /* IE 9 */
+	-webkit-transform: rotate(25deg); /* Chrome, Safari, Opera */
+	transform: rotate(25deg);
+	transition: 0.5s;
+}
+@keyframes message {
+	0% {margin-left: -100%;}
+	10% {margin-left: 0;}
+	90% {margin-left: 0;}
+	100% {margin-left: -100%;}
+}

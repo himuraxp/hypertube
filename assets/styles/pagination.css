@@ -1,0 +1,20 @@
+.pagination-block {
+	display: block;
+	text-align: center;
+	font-size: 1.5em;
+}
+.pagination {
+	width: 30px;
+	text-align: center;
+	outline:none;
+	background-color:rgba(0,0,0,0);
+	color:whitesmoke;
+	border:none;
+	font-family: 'Baloo Bhai', cursive;
+}
+.pagination-button {
+	background-color:rgba(0,0,0,0);
+	color:whitesmoke;
+	border:none;
+	outline:none;
+}

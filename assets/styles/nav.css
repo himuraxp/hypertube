@@ -1,0 +1,37 @@
+:root {
+	--nav-color: #081c24;
+}
+.nav-v2 {
+	display: flex;
+	position: fixed;
+	top: 40px;
+	background: whitesmoke;
+	padding: 0 20%!important;
+	height: 40px;
+	left: 0;
+	width: 106%!important;
+	justify-content: center;
+}
+.nav-filter {
+	position: fixed;
+	z-index: 2;
+	background: whitesmoke;
+	height: 100px;
+	width: 100%;
+	top: 86px;
+	right: 0;
+	border-top: 5px solid #081c24;
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
+	transition: all 0.3s ease-out;
+}
+.nav-filter, .nav-block-filter, label {
+	font-weight: 100;
+}
+.input-filter {
+	border: 1px solid #aaa;
+	border-radius: 4px;
+	height: 1.5em;
+}
+.log-filter {
+	font-family: FontAwesome;
+}

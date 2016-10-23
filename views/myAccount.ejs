@@ -1,0 +1,103 @@
+<start>
+	<% if(!req.session.etat || !req.session.user.language || req.session.user.language == "English" || req.session.etat == "déconnecté"){ %>
+    <% req.setLocale('en') %>
+  <% } else if(!req.session.user.language || req.session.user.language == "Français"){ %>
+    <% req.setLocale('fr') %>
+  <% } %>
+<% if(req.session.etat === "connecté" && req.session.user.active === 1) { %>
+<div class="central"  style="display:block;width:100%;margin:90px 0 0 0;">
+	<% if(req.session.match && req.session.match[0] == "email"){ %>
+	<div class="errorSignup messageTop">
+		<%= __('An account with this email: ') %><%= req.session.match[1]%><%= __(' already exists, please choose another one !!') %>
+	</div>
+	<%  req.session.match = "";%>
+	<% }else if(req.session.match && req.session.match[0] == "pseudo"){ %>
+	<div class="errorSignup messageTop">
+		<%= __('This login : ') %><%= req.session.match[2]%><%= __(' is already used !!') %>
+	</div>
+	<%  req.session.match = "";%>
+	<% } else if(req.session.errSignup && req.session.errSignup == "signupIncomplete"){ %>
+	<div class="errorSignup messageTop">
+			<%= __('Please complete all fields !!') %>
+	</div>
+	<% req.session.errSignup = ""; %>
+	<%  } else if(req.session.errSignup && req.session.errSignup == "badFormatPwd"){ %>
+	<div class="errorSignup messageTop">
+			<%= __('The password format is not good !!') %>
+	</div>
+	<% req.session.errSignup = ""; %>
+	<%  } else if(req.session.errSignup && req.session.errSignup == "badFormatMail"){ %>
+	<div class="errorSignup messageTop">
+			<%= __('The email format is not good !!') %>
+	</div>
+	<% req.session.errSignup = ""; %>
+	<% }else if(req.session.errSignup && req.session.errSignup == "format_file"){%>
+		<div class="errorSignup messageTop">
+				<%= __('The image format is not good !!') %>
+		</div>
+		<% req.session.errSignup = ""; %>
+		<% }else if(req.session.errSignup && req.session.errSignup == "too_long"){ %>
+			<div class="errorSignup messageTop">
+				<%= __('your first name or your last name or your pseudo is/are too long') %>
+			</div>
+		<% req.session.errSignup = ""; %>
+		<%	} %>
+	</div>
+	<div class="sign">
+	<form class="block-register" action="/Users/modify" enctype="multipart/form-data" method="post">
+	    <% if(!req.session.user.facebookId.match(/facebookId-/) && !req.session.user.twitterId.match(/twitterId-/) && !req.session.user.googleId.match(/googleId-/) &&!req.session.user.googleId.match(/ id_42-/)){ %>
+	    <div class="form-group">
+	      <label class="register-min-title" ><%= __('Email address') %></label>
+	      <input type="email" class="form-control" name="Email" aria-describedby="emailHelp" placeholder="Enter email" value="<%= req.session.user.email%>">
+	      <small id="emailHelp" class="form-text text-muted"><%= __('We\'ll never share your email with anyone else.') %></small>
+	    </div>
+	    <% }%>
+	    <div class="form-group">
+	      <label class="register-min-title"><%= __('First Name') %></label>
+	      <input type="text" class="form-control" name="firstName" placeholder="Enter First Name" value="<%= req.session.user.firstName%>">
+	    </div>
+	    <div class="form-group">
+	      <label class="register-min-title"><%= __('Last Name') %></label>
+	      <input type="text" class="form-control" name="lastName" placeholder="Enter Last Name" value="<%= req.session.user.lastName%>">
+	    </div>
+	    <div class="form-group">
+	      <label class="register-min-title"><%= __('Login') %></label>
+	      <input type="text" class="form-control" name="pseudo" placeholder="Enter Pseudo" value="<%= req.session.user.pseudo%>">
+	    </div>
+	    <div class="form-group">
+	      <label class="register-min-title"><%= __('language select') %></label>
+	      <select class="form-control" name="languageSelect">
+	        <% if(req.session.user.language == "English"){%>
+	            <option value="English" >English</option>
+	            <option value="Français">Français</option>
+	        <% }else{%>
+	            <option value="English">English</option>
+	            <option value="Français" selected="selected">Français</option>
+	        <% }%>
+	      </select>
+	    </div>
+	    <div class="form-group">
+	      <label class="register-min-title"><%= __('Profile photo') %></label>
+		  <div class="">
+		  	<img src="<%= !req.session.user.photo ? "/images/pic_default.jpg" : req.session.user.photo%>" alt="Mountain View" style="width:100px;height:100px;margin-bottom:10px;border-radius:4px;"/>
+		  </div>
+
+	      <input class="btn-hp hvr-bounce-to-bottom" type="file" name="userPhoto"/>
+	    </div>
+	    <button type="submit" class="btn-hp hvr-bounce-to-bottom"><%= __('Save modifications') %></button>
+	</form>
+</div>
+<% } else { %>
+	<a href="/login"><button class="btn-hp hvr-bounce-to-bottom"><%= __('Sign In') %></button></a>
+	<h1 class="title-header"><%= __('To access this page you must be logged in with an active account') %></h1>
+	<script type="text/javascript">
+	$(document).ready( function() {
+		function clearNav() {
+			$(".navi").remove();
+		}
+		clearNav();
+	})
+	</script>
+<% } %>
+
+<end>
