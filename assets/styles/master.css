@@ -43,7 +43,7 @@ button, input, select, textarea {
 	outline: none;
 }
 input[type="submit"] {
-    font-family: FontAwesome;
+	font-family: FontAwesome;
 }
 select {
 	background: #fff;

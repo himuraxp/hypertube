@@ -21,8 +21,6 @@ $(document).ready( function() {
 		}
 	}
 
-
-
 	function goHome(e){
 		io.socket.off("home");
 		var home = jQuery.get('/', function(data) {

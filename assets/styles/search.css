@@ -21,16 +21,16 @@
 
 .close-search {
 	margin-top: -80px;
-    position: absolute;
-    color: whitesmoke;
-    font-size: 5em;
-    height: 120px;
-    width: 120px;
-    text-shadow: 0 0 15px #333;
-    transition: 0.5s;
-    padding: 0;
-    border-radius: 50%;
-    margin-left: 43%;
+	position: absolute;
+	color: whitesmoke;
+	font-size: 5em;
+	height: 120px;
+	width: 120px;
+	text-shadow: 0 0 15px #333;
+	transition: 0.5s;
+	padding: 0;
+	border-radius: 50%;
+	margin-left: 43%;
 }
 
 .close-search:hover {

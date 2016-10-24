@@ -41,7 +41,7 @@
 	padding: 20px;
 	background-color: #081c24;
 	box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.4);
-    transition: all 0.3s ease-out;
+	transition: all 0.3s ease-out;
 }
 
 .block-search img {

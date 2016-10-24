@@ -65,25 +65,9 @@ module.exports = {
 				}
 
 			}
-			// if (url[1]) {
-			// 	if (Number(url[1])) {
-			// 		page = url[1]
-			// 		User.find().paginate({page: page, limit: 10}).exec(function(err, found){
-			// 			if (err)
-			// 				return res.serverError(err);
-			// 			return res.view('gestionUsers', {listUsers: found, page: page, update: update, msg: msg});
-			// 		});
-			// 	} else {
-			// 		User.find().paginate({page: page, limit: 10}).exec(function(err, found){
-			// 			if (err)
-			// 				return res.serverError(err);
-			// 			return res.view('gestionUsers', {listUsers: found, page: page, update: update, msg: msg});
-			// 		});
-			// 	}
-			// }
 			User.find().exec(function(err, found){
 				if (err)
-					return res.serverError(err);
+				return res.serverError(err);
 				return res.view('gestionUsers', {listUsers: found, update: update, msg: msg});
 			});
 		} else {
@@ -120,13 +104,13 @@ module.exports = {
 			if (me.admin === 2) {
 				query.where({'admin': [1,0]}).paginate({page: page, limit: 10}).exec(function(err, found){
 					if (err)
-						return res.serverError(err);
+					return res.serverError(err);
 					return res.view('gestionUsers', {listUsers: found, page: page, update: update, msg: msg, me: me});
 				});
 			} else if (me.admin === 1) {
 				query.where({'admin': 0}).paginate({page: page, limit: 10}).exec(function(err, found){
 					if (err)
-						return res.serverError(err);
+					return res.serverError(err);
 					return res.view('gestionUsers', {listUsers: found, page: page, update: update, msg: msg, me: me});
 				});
 			} else {
@@ -134,8 +118,6 @@ module.exports = {
 			}
 		}
 	},
-
-///////////////////////////////////////////////////////ADMIN UPDATE////////////////////////////////////////////////////////////////////////////////////////////////
 
 	adminUpdateUser: function(req, res) {
 		User.find({ id: req.param("id_user") }).exec(function(err, user){
@@ -195,28 +177,28 @@ module.exports = {
 				} else {
 					var permit = 0
 					if (req.param("permit") === "admin")
-						permit = 1
+					permit = 1
 					if (req.param("email") !== temp.email || req.param("firstName") !== temp.firstName || req.param("lastName") !== temp.lastName || req.param("pseudo") !== temp.pseudo || req.param("codeActive") !== temp.codeActive || permit !== temp.admin || req.param("language") !== temp.language) {
 						if (req.param("email") !== "" && req.param("email") !== undefined && req.param("email") !== temp.email) {
-									if (req.param("email").match(/^[a-zA-Z0-9._-]+@[a-zA-Z0-9._-]{2,}\.[a-z]{2,4}$/)) {
-										temp.email = req.param("email")
+							if (req.param("email").match(/^[a-zA-Z0-9._-]+@[a-zA-Z0-9._-]{2,}\.[a-z]{2,4}$/)) {
+								temp.email = req.param("email")
+							} else {
+								if (backURL.match("OK=update")) {
+									parseUrl = backURL.split("\?");
+									if (parseUrl[1] && parseUrl[1] === "OK=update") {
+										parseUrl[1] = "OFF=update-email"
+										newUrl = parseUrl[0] + "?" + parseUrl[1]
+									} else if (parseUrl[2] && parseUrl[2] === "OK=update") {
+										parseUrl[2] = "OFF=update-email"
+										newUrl = parseUrl[0] + "?" + parseUrl[1] + "?" + parseUrl[2]
 									} else {
-										if (backURL.match("OK=update")) {
-											parseUrl = backURL.split("\?");
-											if (parseUrl[1] && parseUrl[1] === "OK=update") {
-												parseUrl[1] = "OFF=update-email"
-												newUrl = parseUrl[0] + "?" + parseUrl[1]
-											} else if (parseUrl[2] && parseUrl[2] === "OK=update") {
-												parseUrl[2] = "OFF=update-email"
-												newUrl = parseUrl[0] + "?" + parseUrl[1] + "?" + parseUrl[2]
-											} else {
-												newUrl = backURL
-											}
-											return res.redirect(newUrl)
-										} else {
-											return res.redirect(backURL + "?OFF=update-email")
-										}
+										newUrl = backURL
 									}
+									return res.redirect(newUrl)
+								} else {
+									return res.redirect(backURL + "?OFF=update-email")
+								}
+							}
 						}
 
 						if (req.param("firstName") !== "" && req.param("firstName") !== undefined  && req.param("firstName") !== temp.firstName) {
@@ -413,7 +395,7 @@ module.exports = {
 							if (parseUrl[1] && (parseUrl[1] === "OK=update" || parseUrl[1] === "OFF=update")) {
 								newUrl = parseUrl[0]
 							} else if (parseUrl[2] && (parseUrl[2] === "OK=update" || parseUrl[2] === "OFF=update")) {
-									newUrl = parseUrl[0] + "?" + parseUrl[1]
+								newUrl = parseUrl[0] + "?" + parseUrl[1]
 							} else {
 								newUrl = backURL
 							}
@@ -432,7 +414,7 @@ module.exports = {
 							if (parseUrl[1] && (parseUrl[1] === "OK=update" || parseUrl[1] === "OFF=update")) {
 								newUrl = parseUrl[0]
 							} else if (parseUrl[2] && (parseUrl[2] === "OK=update" || parseUrl[2] === "OFF=update")) {
-									newUrl = parseUrl[0] + "?" + parseUrl[1]
+								newUrl = parseUrl[0] + "?" + parseUrl[1]
 							} else {
 								newUrl = backURL
 							}

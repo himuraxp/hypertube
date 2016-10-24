@@ -9,7 +9,6 @@ var
 jwt = require('jsonwebtoken'),
 tokenSecret = "secretissecet";
 
-// Generates a token from supplied payload
 module.exports.issue = function(payload) {
 	return jwt.sign(
 		payload,
@@ -20,7 +19,6 @@ module.exports.issue = function(payload) {
 	);
 };
 
-// Verifies token on a request
 module.exports.verify = function(token, callback) {
 	return jwt.verify(
 		token, // The token to be verified

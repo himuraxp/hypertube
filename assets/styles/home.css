@@ -19,7 +19,6 @@
 }
 .navbar-block{
 	background-color: var(--nav-color);
-	/*box-shadow: 0 3px 0 rgba(164,212,170,1);*/
 }
 .nav-logo {
 	transition: 0.5s;

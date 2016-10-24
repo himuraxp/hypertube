@@ -1,62 +1,61 @@
 .popup {
-  position:fixed;
-  clear:both;
-  z-index: 50;
-  width:100%;
-  background-color: #081c24;
-  box-shadow: 0 0 4px #e6efc2;
-  left: 0;
-  top: 85px;
-  color:white;
-  padding-top: 10px;
-  padding-bottom: 100%;
-  /*display:none;*/
+	position:fixed;
+	clear:both;
+	z-index: 50;
+	width:100%;
+	background-color: #081c24;
+	box-shadow: 0 0 4px #e6efc2;
+	left: 0;
+	top: 85px;
+	color:white;
+	padding-top: 10px;
+	padding-bottom: 100%;
 }
 .percentDl {
-  position:absolute;
-  top:40px;
- text-align:center;
- width:100%;
+	position:absolute;
+	top:40px;
+	text-align:center;
+	width:100%;
 }
 .player{
-  position:relative;
-  text-align:center;
+	position:relative;
+	text-align:center;
 }
 .reduct, .close {
-  float:right;
-  margin-right:10px;
-  color:#ccc;
-  background-color:#081c24;
-  border:none;
+	float:right;
+	margin-right:10px;
+	color:#ccc;
+	background-color:#081c24;
+	border:none;
 }
 .close {
-  float:right;
-  margin-right:10px;
-  color:#ccc;
-  background-color:#081c24;
-  border:none;
+	float:right;
+	margin-right:10px;
+	color:#ccc;
+	background-color:#081c24;
+	border:none;
 }
 #popbot {
-  width:100%;
-  position:fixed;
-  bottom:0;
+	width:100%;
+	position:fixed;
+	bottom:0;
 }
 #typ1{
-  display:none;
+	display:none;
 }
 .littleBar {
-  width:150px;
-  height:30px;
-  padding:5px;
-  padding-bottom: 10px;
-  border:2px solid rgba(231,158,158,0.9);
-  margin: 0 0 5px 5px;
-  border-radius: 4px;
-  background-color: rgba(51,51,51,0.9);
-  color:white;
-  float:left;
-  box-shadow: 1px 1px 2px #333;
-  transition: 0.5s;
+	width:150px;
+	height:30px;
+	padding:5px;
+	padding-bottom: 10px;
+	border:2px solid rgba(231,158,158,0.9);
+	margin: 0 0 5px 5px;
+	border-radius: 4px;
+	background-color: rgba(51,51,51,0.9);
+	color:white;
+	float:left;
+	box-shadow: 1px 1px 2px #333;
+	transition: 0.5s;
 }
 
 .littleBar:hover {
